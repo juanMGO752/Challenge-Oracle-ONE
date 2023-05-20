@@ -1,0 +1,104 @@
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width">
+        <title>Encriptador - Alura</title>
+        <link rel="stylesheet" href="reset.css">
+        <link rel="stylesheet" href="style-encri.css">
+    </head>
+    <body>
+        <div class="body">
+            <div class="container-img">
+                <img class="imgLogo"src="imagenes/Logo.png" alt="logo-a" width="120" height="48">
+            </div>
+            <div class="container-input" id="contenedor-frase">
+                <textarea class="texto" name="frase" id="frase" cols="30" rows="10" placeholder="Ingrese el texto aqui"></textarea>
+                <div class="container-advert-buttom">
+                    <div class="advert-buttom">
+                        <p> &#8855;	 Solo letras minusculas y sin acentos</p>
+                        <div class="container-buttom">
+                            <button class="btnEncritar" id="btn-encritar">Encriptar</button>
+                            <button class="btnDesencritar" id="btn-desencritar">Desencriptar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container-txt" id="contenedor-traduccion" >
+                <div class="all-no-message">
+                    <p id="traduccion"></p>
+                    <div class="container-no-message" id="visual">
+                        <img class="img-no-message" src="imagenes/Muñeco.png" alt="muñeco">
+                        <h1>Ningún mensaje fue encontrado</h1>
+                        <p>Ingrese el texto que desees encriptar o desencriptar.</p>     
+                    </div>
+                    <div class="cont-btn-copi">
+                        <button class="btnCopiar" id="btncopiar">Copiar</button>
+                    </div>
+                </div>
+             </div>
+        </div>
+        <script>
+            // funcion encritar
+            document.querySelector('#btn-encritar').onclick = async() => {
+                try {
+                    let traduccion = document.getElementById("traduccion");
+                    let btncopiar = document.getElementById("btncopiar")
+                    let visual = document.getElementById("visual");
+                    visual.style.display = "none";
+                    let frase = document.getElementById("frase").value;
+                    frase = frase.split("");
+            
+                    for(let x = 0 ; x<frase.length ; x++){
+                        if(frase[x] == "a"){
+                            frase[x]="ai";
+                        }else if(frase[x] == "e"){
+                            frase[x]="enter";
+                        }else if(frase[x] == "i"){
+                            frase[x]="imes";
+                        }else if(frase[x] == "o"){
+                            frase[x]="ober";
+                        }else if(frase[x] == "u"){
+                            frase[x]="ufat";
+                        }
+                        
+                    }
+                    frase = frase.join("");
+                    btncopiar.style.cssText= 'display:block;'
+                    traduccion.innerHTML=frase;
+                }
+                catch (error) {
+                    console.log(error)
+                }
+            }
+
+            // funcion para desencritar
+            document.querySelector('#btn-desencritar').onclick = async() => {
+                try {
+                    let valores = ["ai","enter","imes","ober","ufat"];
+                    let visual = document.getElementById("visual");
+                    visual.style.display = "none";
+                    let frase = document.getElementById("frase").value;
+
+                    for(let x = 0 ; x<valores.length ; x++){
+                        frase = frase.replaceAll(valores[x], valores[x][0]);
+                    }
+                    btncopiar.style.cssText= 'display:block;'
+                    traduccion.innerHTML=frase;
+                }
+                catch (error) {
+                    console.log(error)
+                }
+            }
+            // funcion para copiar
+            document.querySelector('#btncopiar').onclick = async() => {
+                try {
+                    let traduccion = document.getElementById("traduccion")
+                    navigator.clipboard.writeText(traduccion.textContent)
+                } catch (error) {
+                    console.log(error)
+                }
+            }
+
+        </script>
+    </body>
+</html>

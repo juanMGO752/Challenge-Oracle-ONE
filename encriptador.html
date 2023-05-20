@@ -1,0 +1,60 @@
+<meta charset="UTF-8">
+
+<h1>Encriptador & Desencriptador</h1>
+<br>
+<h2>encriptador</h2>
+<input id="ipt1"/>
+<button id="btn1" onclick="encriptar()">encriptar</button>
+<br>
+<h2>desencriptador</h2>
+<input id="ipt2"/>
+<button id="btn2" onclick="desencriptar()">desencriptar</button>
+
+<script>
+
+    
+
+    // var frase = input.value;
+
+    function encriptar(){
+        var frase = document.getElementById("ipt1").value;
+        frase = frase.split("");
+
+        for(var x = 0 ; x<frase.length ; x++){
+
+            switch(frase[x]){
+                case "a":
+                    frase[x]="ai";
+                    break;
+                case "e":
+                    frase[x]="enter";
+                    break;
+                case "i":
+                    frase[x]="imes";
+                    break;
+                case "o":
+                    frase[x]="ober";
+                    break;
+                case "u":
+                    frase[x]="ufat";
+                    break;
+            }   
+        }
+        frase = frase.join("");
+        alert(frase);
+    }
+
+    function desencriptar(){
+
+        var frase = document.getElementById("ipt2").value;
+
+        var valores = ["ai","enter","imes","ober","ufat"];
+        var punto = frase.length;
+        console.log(punto)
+        for(var x = 0 ; x<valores.length ; x++){
+            frase = frase.replaceAll(valores[x], valores[x][0]);
+        }
+        alert(frase);
+    }
+
+</script>
