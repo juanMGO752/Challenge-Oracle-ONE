@@ -1,1 +1,1 @@
-prueba
+Challenge hecho durante el curso de alura llamado encriptador, se cumplio con todas las funciones requeridas y las opcionales igual, cuenta con boton para encriptar y desencritar como el boton adicional de copiar el contenido encriptado.
